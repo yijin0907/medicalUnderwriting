@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
                                     clipRule="evenodd"
                                 />
                             </svg>
-                            <p>02-23811717</p>
+                            <p className="font-bold">02-23811717</p>
                         </div>
                         <div className="items-center grid grid-flow-col gap-4 justify-start">
                             <svg
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                                     clipRule="evenodd"
                                 />
                             </svg>
-                            <p>台北市中正區北平西路3號4樓4085室</p>
+                            <p className="font-bold">台北市中正區北平西路3號4樓4085室</p>
                         </div>
                     </div>
                 </nav>

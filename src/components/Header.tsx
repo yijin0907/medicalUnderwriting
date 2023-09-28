@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router-dom'
+
 const Header: React.FC = () => {
+    const navigate = useNavigate()
     return (
         <>
             <div className="bg-warning text-base-content px-32 py-3 grid grid-cols-2 gap-4">
                 <div>
                     <div className="avatar">
                         <div className="w-16 mask mask-squircle">
-                            <img src="/images/logo.svg" />
+                            <img src="/images/logo.svg" onClick={() => navigate('/')} />
                         </div>
                     </div>
                 </div>

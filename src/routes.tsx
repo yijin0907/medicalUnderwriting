@@ -1,6 +1,9 @@
 import type { RouteObject } from 'react-router-dom'
-import Home from './pages/home'
-import NotFound from './pages/notFound'
+import Home from '@/pages/home'
+import NotFound from '@/pages/notFound'
+import Survey from '@/pages/survey'
+import PersonalInfo from '@/pages/survey/components/PersonalInfo'
+import DisInfo from './pages/survey/components/DisInfo'
 
 const routes: RouteObject[] = [
     {
@@ -8,20 +11,20 @@ const routes: RouteObject[] = [
         element: <Home />,
         children: [],
     },
-    // {
-    //     path: '/survey',
-    //     element: <Survey />,
-    //     children: [
-    //         {
-    //             path: '/survey/personalInfo',
-    //             element: <PersonalInfo />,
-    //         },
-    //         {
-    //             path: '/survey/:item',
-    //             element: <QnrItem />,
-    //         },
-    //     ],
-    // },
+    {
+        path: '/survey',
+        element: <Survey />,
+        children: [
+            {
+                path: '/survey/personalInfo',
+                element: <PersonalInfo />,
+            },
+            {
+                path: '/survey/disInfo',
+                element: <DisInfo />,
+            },
+        ],
+    },
     // {
     //     path: '/result',
     //     element: <Result />,
