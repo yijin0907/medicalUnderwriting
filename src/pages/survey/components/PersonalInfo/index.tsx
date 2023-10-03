@@ -6,7 +6,7 @@ const PersonalInfo: React.FC = () => {
     return (
         <>
             <div
-                className="m-10 w-screen h-screen grid content-center border-purple-800"
+                className="m-10 w-screen h-max grid content-center border-purple-800"
                 style={{ backgroundImage: `url(${cardBgImg})` }}
             >
                 <div className="items-center text-center">
