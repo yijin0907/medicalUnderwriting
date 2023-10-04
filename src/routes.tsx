@@ -20,7 +20,7 @@ const routes: RouteObject[] = [
                 element: <PersonalInfo />,
             },
             {
-                path: '/survey/disInfo',
+                path: '/survey/:items',
                 element: <DisInfo />,
             },
         ],

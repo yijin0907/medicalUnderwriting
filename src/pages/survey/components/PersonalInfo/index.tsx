@@ -5,11 +5,8 @@ const PersonalInfo: React.FC = () => {
     const navigate = useNavigate()
     return (
         <>
-            <div
-                className="m-10 w-screen h-max grid content-center border-purple-800"
-                style={{ backgroundImage: `url(${cardBgImg})` }}
-            >
-                <div className="items-center text-center">
+            <div className="w-full" style={{ backgroundImage: `url(${cardBgImg})` }}>
+                <div className="items-center text-center p-10">
                     <h2 className="mb-10 text-6xl">Personal Infomation</h2>
                     <form>
                         <div className="grid grid-cols-7 gap-10">
@@ -67,7 +64,7 @@ const PersonalInfo: React.FC = () => {
                                     className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
                                     type="submit"
                                     onClick={() => {
-                                        navigate('/survey/disInfo')
+                                        navigate('/survey/disinfo01')
                                     }}
                                 >
                                     Submit

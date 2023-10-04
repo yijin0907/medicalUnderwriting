@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 
@@ -10,18 +11,33 @@ type DisInfomation = {
 }
 
 const DisSystem: React.FC = () => {
-    const disSystem = dbData.K21
-    const disSystemName = disSystem[0].level1 as string
-    const disName = disSystem as Array<DisInfomation>
+    const dbKey: string = 'K' + useParams().items?.slice(-2)
+    const disSystem = Object.entries(dbData).filter((v) => v[0] === dbKey)
+    const disSystemName = disSystem[0][1][0].level1 as string
+    const disDatas = disSystem[0][1] as Array<DisInfomation>
+
     return (
         <>
             <p className="text-3xl text-start">{disSystemName}</p>
-            {disName.map((v) => (
-                <div className="bg-violet-400 rounded-xl m-4 p-4 flex justify-between items-center">
-                    <p className="text-xl text-start w-1/3">{v.dis_name}</p>
-                    <DisOptions />
-                </div>
-            ))}
+            {disDatas.map((v, index) =>
+                index % 2 !== 0 ? (
+                    <div
+                        className="opacity-[85%] bg-primary rounded-xl mt-8 px-8 py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                        key={v.dis_code}
+                    >
+                        <p className="text-xl text-start w-1/3">{v.dis_name}</p>
+                        <DisOptions disCode={v.dis_code} />
+                    </div>
+                ) : (
+                    <div
+                        className="opacity-[85%] bg-secondary rounded-xl mt-8 px-8 py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                        key={v.dis_code}
+                    >
+                        <p className="text-xl text-start w-1/3">{v.dis_name}</p>
+                        <DisOptions disCode={v.dis_code} />
+                    </div>
+                )
+            )}
         </>
     )
 }
