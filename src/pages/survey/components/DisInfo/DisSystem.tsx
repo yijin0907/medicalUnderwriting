@@ -23,18 +23,18 @@ const DisSystem: React.FC = () => {
                 {disDatas.map((v, index) =>
                     index % 2 !== 0 ? (
                         <div
-                            className="opacity-[85%] w-[80%] bg-primary rounded-xl mt-8 px-8 py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                            className="opacity-[85%] w-[80%] bg-primary rounded-xl mt-8 lg:px-8 lg:py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
                             key={v.dis_code}
                         >
-                            <p className="text-lg text-start w-1/3">{v.dis_name}</p>
+                            <p className="lg:text-lg text-start lg:w-1/3">{v.dis_name}</p>
                             <DisOptions disCode={v.dis_code} />
                         </div>
                     ) : (
                         <div
-                            className="opacity-[85%] w-[80%] bg-secondary rounded-xl mt-8 px-8 py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                            className="opacity-[85%] w-[80%] bg-secondary rounded-xl mt-8 lg:px-8 lg:py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
                             key={v.dis_code}
                         >
-                            <p className="text-lg text-start w-1/3">{v.dis_name}</p>
+                            <p className="lg:text-lg text-start lg:w-1/3">{v.dis_name}</p>
                             <DisOptions disCode={v.dis_code} />
                         </div>
                     )

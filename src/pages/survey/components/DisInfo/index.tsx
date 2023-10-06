@@ -21,10 +21,9 @@ const DisInfo: React.FC = () => {
             // } else if (disKey === 'Q08') {
             //     navigate(`/result/resulttable`)
         } else {
-            console.log(disKey)
             navigate(`/survey/${disKey}`)
         }
-    }, [disKey])
+    }, [disKey, navigate])
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>

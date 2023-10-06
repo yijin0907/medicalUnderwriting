@@ -4,81 +4,73 @@ type DisOptionProps = {
 }
 
 const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
-    const [catchSelectedOption, setCatchSelectedOption] = useState('catchN')
-    const [hospSelectedOption, setHospSelectedOption] = useState('hospN')
+    const [catchSelectedOption, setCatchSelectedOption] = useState(`${props.disCode}_CATCH_N`)
+    const [hospSelectedOption, setHospSelectedOption] = useState(`${props.disCode}_HOSP_N`)
     const handleCatchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCatchSelectedOption(event.target.value)
+        setCatchSelectedOption(event.target.id)
+        console.log(event.target.id)
     }
     const handleHospOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setHospSelectedOption(event.target.value)
+        setHospSelectedOption(event.target.id)
+        console.log(event.target.id)
     }
-
-    const catchDisName = 'catch' + props.disCode
-    const hospDisName = 'hosp' + props.disCode
+    const disCode = props.disCode
     return (
-        <div className="grid grid-rows-2 w-2/3">
-            <div className="flex flex-row">
-                <p className="basis-1/2 my-2 text-lg font-bold text-gray-700 text-start border-dotted border-r-4 border-indigo-500">
-                    是否罹患該病？
-                </p>
-                <div className="basis-1/4 inline-flex items-center justify-end">
+        <div className="grid grid-rows-2 w-3/4 xl:w-1/2">
+            <div className="flex flex-col lg:flex-row">
+                <p className="w-[70%] my-2 lg:text-lg font-bold text-gray-700 text-start ">是否罹患該病？</p>
+                <div className="w-[15%] flex items-center justify-end">
                     <input
                         type="radio"
-                        id={`${catchDisName}_N`}
-                        name={catchDisName}
-                        className="checked:bg-amber-500 checked:ring-amber-500 text-amber-500 w-6 h-6"
-                        value="catchN"
-                        checked={catchSelectedOption === 'catchN'}
+                        id={`${disCode}_CATCH_N`}
+                        name={`${disCode}_CATCH_N`}
+                        className="checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 lg:w-6 lg:h-6"
+                        checked={catchSelectedOption === `${disCode}_CATCH_N`}
                         onChange={handleCatchOptionChange}
                     />
-                    <label className="inline-flex items-center text-lg ml-4" htmlFor={`${catchDisName}_N`}>
+                    <label className="lg:text-lg lg:ml-2" htmlFor={`${disCode}_CATCH_N`}>
                         無
                     </label>
                 </div>
-                <div className="basis-1/4 inline-flex items-center justify-center">
+                <div className="w-[15%] flex items-center justify-end">
                     <input
                         type="radio"
-                        id={`${catchDisName}_Y`}
-                        name={catchDisName}
-                        className="checked:bg-amber-500 checked:ring-amber-500 text-amber-500 w-6 h-6"
-                        value="catchY"
-                        checked={catchSelectedOption === 'catchY'}
+                        id={`${disCode}_CATCH_Y`}
+                        name={`${disCode}_CATCH_Y`}
+                        className="checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 lg:w-6 lg:h-6"
+                        checked={catchSelectedOption === `${disCode}_CATCH_Y`}
                         onChange={handleCatchOptionChange}
                     />
-                    <label className="inline-flex items-center text-lg ml-4" htmlFor={`${catchDisName}_Y`}>
+                    <label className="lg:text-lg lg:ml-2" htmlFor={`${disCode}_CATCH_Y`}>
                         有
                     </label>
                 </div>
             </div>
-            <div className="flex flex-row border-dotted border-t-4 border-indigo-500">
-                <p className="basis-1/2 my-2 text-lg font-bold text-gray-700 text-start border-dotted border-r-4 border-indigo-500">
-                    最近五年是否因該病住院？
-                </p>
-                <div className="basis-1/4 inline-flex items-center justify-end">
+            <div className="flex flex-col lg:flex-row border-dotted border-t-4 border-indigo-500">
+                <p className="w-[70%] my-2 lg:text-lg font-bold text-gray-700 text-start ">最近五年是否因該病住院？</p>
+                <div className="w-[15%] flex items-center justify-end">
                     <input
                         type="radio"
-                        name={hospDisName}
-                        id={`${hospDisName}_N`}
-                        className="checked:bg-amber-500 checked:ring-amber-500 text-amber-500 w-6 h-6"
-                        value="hospN"
-                        checked={hospSelectedOption === 'hospN'}
+                        name={`${disCode}_HOSP_N`}
+                        id={`${disCode}_HOSP_N`}
+                        className="checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 lg:w-6 lg:h-6"
+                        checked={hospSelectedOption === `${disCode}_HOSP_N`}
                         onChange={handleHospOptionChange}
                     />
-                    <label className="inline-flex items-center text-lg ml-4" htmlFor={`${hospDisName}_N`}>
+                    <label className="lg:text-lg lg:ml-2" htmlFor={`${disCode}_HOSP_N`}>
                         無
                     </label>
                 </div>
-                <div className="basis-1/4 inline-flex items-center justify-center">
+                <div className="w-[15%] flex items-center justify-end">
                     <input
                         type="radio"
-                        name={hospDisName}
-                        id={`${hospDisName}_Y`}
-                        className="checked:bg-amber-500 checked:ring-amber-500 text-amber-500 w-6 h-6"
-                        value="hospY"
-                        checked={hospSelectedOption === 'hospY'}
+                        name={`${disCode}_HOSP_Y`}
+                        id={`${disCode}_HOSP_Y`}
+                        className="checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 lg:w-6 lg:h-6"
+                        checked={hospSelectedOption === `${disCode}_HOSP_Y`}
                         onChange={handleHospOptionChange}
                     />
-                    <label className="inline-flex items-center text-lg ml-4" htmlFor={`${hospDisName}_Y`}>
+                    <label className="lg:text-lg lg:ml-2" htmlFor={`${disCode}_HOSP_Y`}>
                         有
                     </label>
                 </div>
