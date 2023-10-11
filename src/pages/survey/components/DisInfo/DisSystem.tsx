@@ -18,28 +18,30 @@ const DisSystem: React.FC = () => {
 
     return (
         <>
-            <p className="text-3xl text-start">{disSystemName}</p>
-            <div className="flex flex-col items-center">
-                {disDatas.map((v, index) =>
-                    index % 2 !== 0 ? (
-                        <div
-                            className="opacity-[85%] w-[80%] bg-primary rounded-xl mt-8 lg:px-8 lg:py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                            key={v.dis_code}
-                        >
-                            <p className="lg:text-lg text-start lg:w-1/3">{v.dis_name}</p>
-                            <DisOptions disCode={v.dis_code} />
-                        </div>
-                    ) : (
-                        <div
-                            className="opacity-[85%] w-[80%] bg-secondary rounded-xl mt-8 lg:px-8 lg:py-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                            key={v.dis_code}
-                        >
-                            <p className="lg:text-lg text-start lg:w-1/3">{v.dis_name}</p>
-                            <DisOptions disCode={v.dis_code} />
-                        </div>
-                    )
-                )}
-            </div>
+            <p className="text-2xl text-start">{disSystemName}</p>
+            <form>
+                <div className="flex flex-col items-center justify-center">
+                    {disDatas.map((v, index) =>
+                        index % 2 !== 0 ? (
+                            <div
+                                className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                key={v.dis_code}
+                            >
+                                <p className="sm:text-lg text-center w-1/2 p-4">{v.dis_name}</p>
+                                <DisOptions disCode={v.dis_code} />
+                            </div>
+                        ) : (
+                            <div
+                                className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                key={v.dis_code}
+                            >
+                                <p className="sm:text-lg text-center w-1/2 p-4">{v.dis_name}</p>
+                                <DisOptions disCode={v.dis_code} />
+                            </div>
+                        )
+                    )}
+                </div>
+            </form>
         </>
     )
 }

@@ -18,32 +18,24 @@ const DisInfo: React.FC = () => {
     useEffect(() => {
         if (disKey === 'disinfo00') {
             navigate(`/survey/personalInfo`)
-            // } else if (disKey === 'Q08') {
-            //     navigate(`/result/resulttable`)
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
         } else {
             navigate(`/survey/${disKey}`)
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
         }
     }, [disKey, navigate])
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
-                <div className="items-center text-center p-10">
-                    <h2 className="mb-10 text-6xl">Disease Infomation</h2>
-                    <form>
-                        <DisSystem />
-                    </form>
+                <div className="p-10 mx-auto sm:w-4/5">
+                    <h2 className="mb-10 text-4xl text-center">Disease Infomation</h2>
+                    <DisSystem />
                 </div>
-                <div className="items-center text-right p-10">
-                    <button
-                        className="btn btn-wide btn-outline btn-accent btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                        onClick={previousPageHandler}
-                    >
+                <div className="flex items-center justify-end p-10 space-x-5">
+                    <button className="btn sm:btn-wide btn-outline btn-accent" onClick={previousPageHandler}>
                         上一頁
                     </button>
-                    <button
-                        className="btn btn-wide btn-outline btn-accent btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                        onClick={nextPageHandler}
-                    >
+                    <button className="btn sm:btn-wide btn-outline btn-accent" onClick={nextPageHandler}>
                         下一頁
                     </button>
                 </div>

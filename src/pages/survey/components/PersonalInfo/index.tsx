@@ -1,73 +1,74 @@
+import { useState } from 'react'
 import cardBgImg from '/images/blue-snow.webp'
 import { useNavigate } from 'react-router-dom'
 
 const PersonalInfo: React.FC = () => {
+    const [genderOption, setGenderOption] = useState('male')
+    const handleGenderOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setGenderOption(event.target.name)
+        console.log(event.target.name)
+    }
     const navigate = useNavigate()
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${cardBgImg})` }}>
-                <div className="items-center text-center p-10">
-                    <h2 className="mb-10 text-6xl">Personal Infomation</h2>
+                <div className="p-10 mx-auto w-4/5">
+                    <p className="mb-10 text-4xl text-center">Personal Infomation</p>
                     <form>
-                        <div className="grid grid-cols-7 gap-10">
-                            <div className="mb-4 col-start-3 col-span-3">
-                                <label className="block mb-2 text-xl font-bold text-gray-700" htmlFor="firstName">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:space-x-10">
+                            <div className="opacity-[85%] w-full bg-secondary rounded-xl mb-10 p-2 flex justify-between items-center  shadow-2xl hover:scale-105 duration-300">
+                                <label className="text-xl font-bold text-gray-700 grow" htmlFor="name">
                                     姓名
                                 </label>
-                                <input
-                                    className="input input-bordered input-info w-full max-w-xs"
-                                    id="name"
-                                    type="text"
-                                    placeholder="name"
-                                />
+                                <input className="rounded-md w-1/2" id="name" type="text" placeholder="姓名" />
                             </div>
-                            <div className="mb-4 col-start-4 col-span-1">
-                                <label className="block mb-2 text-xl font-bold text-gray-700" htmlFor="password">
-                                    性別
-                                </label>
-                                <div className="flex justify-between">
-                                    <div className="form-control">
-                                        <label className="label cursor-pointer">
-                                            <span className="label-text text-lg">男</span>
-                                            <input
-                                                type="radio"
-                                                name="radio-10"
-                                                className="radio checked:bg-red-500"
-                                                checked
-                                            />
+                            <div className="opacity-[85%] w-full bg-primary rounded-xl mb-10 p-2 sm:h-14 flex justify-between items-center shadow-2xl hover:scale-105 duration-300">
+                                <p className="text-xl font-bold text-gray-700">性別</p>
+                                <div className="flex flex-col sm:justify-between sm:flex-row">
+                                    <div className="flex items-center justify-center">
+                                        <input
+                                            type="radio"
+                                            id="male"
+                                            name="male"
+                                            className="radio checked:bg-red-500 checked:ring-red-500 active:ring-red-500 text-red-500 lg:w-6 lg:h-6"
+                                            checked={`${genderOption}` === 'male'}
+                                            onChange={handleGenderOptionChange}
+                                        />
+                                        <label className="text-lg mx-2" htmlFor="male">
+                                            男
                                         </label>
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label cursor-pointer">
-                                            <span className="label-text text-lg">女</span>
-                                            <input
-                                                type="radio"
-                                                name="radio-10"
-                                                className="radio checked:bg-green-500"
-                                            />
+                                    <div className="flex items-center justify-center">
+                                        <input
+                                            type="radio"
+                                            id="female"
+                                            name="female"
+                                            className="radio checked:bg-green-500 checked:ring-green-500 active:ring-green-500 text-green-500 lg:w-6 lg:h-6"
+                                            checked={`${genderOption}` === 'female'}
+                                            onChange={handleGenderOptionChange}
+                                        />
+                                        <label className="text-lg mx-2" htmlFor="female">
+                                            女
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-4 col-start-3 col-span-3">
-                                <label className="block mb-2 text-xl font-bold text-gray-700" htmlFor="password">
+                        </div>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:space-x-10">
+                            <div className="opacity-[85%] w-full bg-secondary rounded-xl mb-10 p-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300">
+                                <label className="text-xl font-bold text-gray-700" htmlFor="date">
                                     出生年月日
                                 </label>
-                                <input
-                                    className="input input-bordered input-info w-full max-w-xs"
-                                    id="date"
-                                    type="date"
-                                />
+                                <input className="w-1/2 rounded-md" id="date" type="date" />
                             </div>
-                            <div className="mb-4 col-start-4 col-span-1">
+                            <div className="flex items-center justify-end w-full mb-10 p-2">
                                 <button
-                                    className="btn btn-primary btn-xs sm:btn-sm md:btn-md lg:btn-lg"
-                                    type="submit"
+                                    className="btn sm:btn-wide btn-outline btn-accent"
                                     onClick={() => {
                                         navigate('/survey/disinfo01')
                                     }}
                                 >
-                                    Submit
+                                    下一頁
                                 </button>
                             </div>
                         </div>
