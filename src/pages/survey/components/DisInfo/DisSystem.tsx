@@ -18,9 +18,9 @@ const DisSystem: React.FC = () => {
 
     return (
         <>
-            <p className="text-2xl text-start">{disSystemName}</p>
+            <p className="text-2xl text-start font-mono font-bold">{disSystemName}</p>
             <form>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-wrap items-center justify-center">
                     {disDatas.map((v, index) =>
                         index % 2 !== 0 ? (
                             <div

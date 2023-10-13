@@ -18,17 +18,17 @@ const DisInfo: React.FC = () => {
     useEffect(() => {
         if (disKey === 'disinfo00') {
             navigate(`/survey/personalInfo`)
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            window.scrollTo({ top: 0, left: 0 })
         } else {
             navigate(`/survey/${disKey}`)
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            window.scrollTo({ top: 0, left: 0 })
         }
     }, [disKey, navigate])
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
                 <div className="p-10 mx-auto sm:w-4/5">
-                    <h2 className="mb-10 text-4xl text-center">Disease Infomation</h2>
+                    <h2 className="mb-10 text-4xl text-center font-mono font-bold">Disease Infomation</h2>
                     <DisSystem />
                 </div>
                 <div className="flex items-center justify-end p-10 space-x-5">
