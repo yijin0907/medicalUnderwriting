@@ -1,32 +1,22 @@
-import { useNavigate } from 'react-router-dom'
 import dbData from '@/disDB'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import DisContext from '@/components/store/dis-context'
 
-type DisKey = {
-    disKey: string
-}
-
-const DisMenu: React.FC<DisKey> = (props: DisKey) => {
-    const [pageNum, setPageNum] = useState(props.disKey)
-    const navigate = useNavigate()
+const DisMenu: React.FC = () => {
+    const contextData = useContext(DisContext)
+    // const navigate = useNavigate()
 
     const pangeHandler = (event: React.MouseEvent<HTMLParagraphElement>) => {
-        setPageNum(props.disKey)
-        navigate(`/survey/${props.disKey}`)
-        console.log('pageNum', pageNum)
-        console.log('EEEE', event.currentTarget.id)
+        contextData?.setPageNum(event.currentTarget.id)
     }
-    useEffect(() => {
-        console.log(pageNum)
-        navigate(`/survey/${pageNum}`)
-    }, [pageNum, navigate])
+
     return (
         <>
-            <div className="">
+            <div className="hidden md:inline-flex">
                 <ul className="menu bg-base-200 w-56 rounded-box text-lg font-bold italic">
                     <li className="menu-title">Title</li>
                     {Object.values(dbData).map((v, index) =>
-                        parseInt(pageNum?.slice(-2) as string) === index + 1 ? (
+                        parseInt(contextData?.pageNum?.slice(-2) as string) === index + 1 ? (
                             <li key={index}>
                                 <p
                                     className="active hover:bg-blue-300"

@@ -1,7 +1,9 @@
-import { useParams } from 'react-router-dom'
+import DisContext from '@/components/store/dis-context'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
+import { useContext } from 'react'
+// import { useNavigate } from 'react-router-dom'
 
 type DisInfomation = {
     level1: string
@@ -11,14 +13,14 @@ type DisInfomation = {
     dis_code: string
 }
 
-type DisKey = {
-    disKey: string
-}
+const DisSystem: React.FC = () => {
+    const contextData = useContext(DisContext)
 
-const DisSystem: React.FC<DisKey> = (props: DisKey) => {
+    const pageNum = contextData?.pageNum
     const gender: string = 'female'
     const age = 20
-    const dbKey = 'K' + props.disKey?.slice(-2)
+
+    const dbKey = 'K' + pageNum?.slice(-2)
     const disSystem = dbData[dbKey as keyof typeof dbData]
     const disSystemName = disSystem[0].level1 as string
     const genderFilterData =
