@@ -1,6 +1,7 @@
 import { useState } from 'react'
 type DisOptionProps = {
     disCode: string
+    hospOnly: boolean
 }
 
 const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
@@ -13,42 +14,45 @@ const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
         setHospSelectedOption(event.target.value)
     }
     const disCode = props.disCode
+    const hospOnly = props.hospOnly
     return (
-        <div className="flex flex-col w-3/4 p-2">
-            <div className="flex flex-col sm:flex-row justify-between items-center">
-                <p className="sm:text-lg font-bold text-gray-700">是否罹患該病？</p>
-                <div className="flex justify-between">
-                    <div className="flex items-center">
-                        <input
-                            type="radio"
-                            id={`${disCode}_CATCH_N`}
-                            value={`${disCode}_CATCH_N`}
-                            name={`${disCode}_CATCH`}
-                            className="radio checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 sm:w-6 sm:h-6"
-                            checked={catchSelectedOption === `${disCode}_CATCH_N`}
-                            onChange={handleCatchOptionChange}
-                        />
-                        <label className="sm:text-lg ml-2" htmlFor={`${disCode}_CATCH_N`}>
-                            無
-                        </label>
-                    </div>
-                    <div className="flex items-center ml-4">
-                        <input
-                            type="radio"
-                            id={`${disCode}_CATCH_Y`}
-                            value={`${disCode}_CATCH_Y`}
-                            name={`${disCode}_CATCH`}
-                            className="radio checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 sm:w-6 sm:h-6"
-                            checked={catchSelectedOption === `${disCode}_CATCH_Y`}
-                            onChange={handleCatchOptionChange}
-                        />
-                        <label className="sm:text-lg ml-2" htmlFor={`${disCode}_CATCH_Y`}>
-                            有
-                        </label>
+        <div className="flex flex-col w-3/4 sm:p-2">
+            {hospOnly && (
+                <div className="flex flex-col sm:flex-row justify-between mx-4 py-1 border-dotted border-b-4 border-indigo-500">
+                    <p className="sm:text-lg font-bold text-gray-700">是否罹患該病？</p>
+                    <div className="flex justify-between">
+                        <div className="flex items-center">
+                            <input
+                                type="radio"
+                                id={`${disCode}_CATCH_N`}
+                                value={`${disCode}_CATCH_N`}
+                                name={`${disCode}_CATCH`}
+                                className="radio checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 sm:w-6 sm:h-6"
+                                checked={catchSelectedOption === `${disCode}_CATCH_N`}
+                                onChange={handleCatchOptionChange}
+                            />
+                            <label className="sm:text-lg ml-2" htmlFor={`${disCode}_CATCH_N`}>
+                                無
+                            </label>
+                        </div>
+                        <div className="flex items-center ml-6">
+                            <input
+                                type="radio"
+                                id={`${disCode}_CATCH_Y`}
+                                value={`${disCode}_CATCH_Y`}
+                                name={`${disCode}_CATCH`}
+                                className="radio checked:bg-amber-500 checked:ring-amber-500 active:ring-amber-500 text-amber-500 sm:w-6 sm:h-6"
+                                checked={catchSelectedOption === `${disCode}_CATCH_Y`}
+                                onChange={handleCatchOptionChange}
+                            />
+                            <label className="sm:text-lg ml-2" htmlFor={`${disCode}_CATCH_Y`}>
+                                有
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-col sm:flex-row justify-between items-center border-dotted border-t-4 border-indigo-500">
+            )}
+            <div className="flex flex-col sm:flex-row justify-between mx-4 py-1">
                 <p className="sm:text-lg font-bold text-gray-700">最近五年是否因該病住院？</p>
                 <div className="flex justify-between">
                     <div className="flex items-center">
@@ -65,7 +69,7 @@ const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
                             無
                         </label>
                     </div>
-                    <div className="flex items-center ml-4">
+                    <div className="flex items-center ml-6">
                         <input
                             type="radio"
                             id={`${disCode}_HOSP_Y`}

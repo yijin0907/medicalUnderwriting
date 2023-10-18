@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import cardBgImg from '/images/blue-snow.webp'
 import { useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -10,21 +9,15 @@ type Inputs = {
 }
 
 const PersonalInfo: React.FC = () => {
-    const [genderOption, setGenderOption] = useState('male')
-    const { register, handleSubmit, setValue } = useForm<Inputs>({
+    const { register, handleSubmit } = useForm<Inputs>({
         shouldUseNativeValidation: true,
         defaultValues: {
-            name: '',
+            name: 'AAAAA',
             gender: 'male',
-            date: '',
+            date: '1991-01-01',
         },
     })
 
-    const handleGenderOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setGenderOption(event.target.value)
-        console.log(event.target.value)
-        setValue('gender', event.target.value)
-    }
     const navigate = useNavigate()
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         console.log(data)
@@ -46,8 +39,7 @@ const PersonalInfo: React.FC = () => {
                                     id="name"
                                     type="text"
                                     placeholder="姓名"
-                                    checked={`${genderOption}` === 'female'}
-                                    {...register('name', { required: 'Please enter your first name.' })}
+                                    {...register('name', { required: 'Please enter your name.' })}
                                 />
                             </div>
 
@@ -60,9 +52,7 @@ const PersonalInfo: React.FC = () => {
                                             id="male"
                                             value="male"
                                             className="radio checked:bg-red-500 checked:ring-red-500 active:ring-red-500 text-red-500 lg:w-6 lg:h-6"
-                                            checked={`${genderOption}` === 'male'}
                                             {...register('gender')}
-                                            onChange={handleGenderOptionChange}
                                         />
                                         <label className="text-lg mx-2" htmlFor="male">
                                             男
@@ -74,9 +64,7 @@ const PersonalInfo: React.FC = () => {
                                             id="female"
                                             value="female"
                                             className="radio checked:bg-green-500 checked:ring-green-500 active:ring-green-500 text-green-500 lg:w-6 lg:h-6"
-                                            checked={`${genderOption}` === 'female'}
                                             {...register('gender')}
-                                            onChange={handleGenderOptionChange}
                                         />
                                         <label className="text-lg mx-2" htmlFor="female">
                                             女
@@ -93,13 +81,7 @@ const PersonalInfo: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end w-full sm:w-[55%] mb-10 p-2">
-                                <button
-                                    type="submit"
-                                    className="btn btn-accent btn-block btn-outline"
-                                    // onClick={() => {
-                                    //     navigate('/survey/disinfo01')
-                                    // }}
-                                >
+                                <button type="submit" className="btn btn-accent btn-block btn-outline">
                                     下一頁
                                 </button>
                             </div>

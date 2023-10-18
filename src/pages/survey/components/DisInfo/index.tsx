@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
-import disCardBgImg from '/images/bgpic.webp'
+import disCardBgImg from '/images/memphis-colorful.webp'
+import DisMenu from './DisMenu'
 
 const DisInfo: React.FC = () => {
     const [disKey, setDisKey] = useState('disinfo01')
@@ -26,18 +27,23 @@ const DisInfo: React.FC = () => {
     }, [disKey, navigate])
     return (
         <>
-            <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
-                <div className="p-10 mx-auto sm:w-4/5">
-                    <h2 className="mb-10 text-4xl text-center font-mono font-bold">Disease Infomation</h2>
-                    <DisSystem />
-                </div>
-                <div className="flex items-center justify-end p-10 space-x-5">
-                    <button className="btn sm:btn-wide btn-outline btn-accent" onClick={previousPageHandler}>
-                        上一頁
-                    </button>
-                    <button className="btn sm:btn-wide btn-outline btn-accent" onClick={nextPageHandler}>
-                        下一頁
-                    </button>
+            <div className="" style={{ backgroundImage: `url(${disCardBgImg})` }}>
+                <h2 className="my-10 text-4xl text-center font-mono font-bold">Disease Infomation</h2>
+                <div className="flex mx-auto p-10">
+                    <div className="">
+                        <DisMenu disKey={disKey} />
+                    </div>
+                    <div className="mx-10">
+                        <DisSystem disKey={disKey} />
+                        <div className="flex items-center justify-end p-10 space-x-5">
+                            <button className="btn sm:btn-wide btn-outline btn-accent" onClick={previousPageHandler}>
+                                上一頁
+                            </button>
+                            <button className="btn sm:btn-wide btn-outline btn-accent" onClick={nextPageHandler}>
+                                下一頁
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
