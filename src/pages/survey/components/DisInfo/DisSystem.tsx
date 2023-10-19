@@ -22,7 +22,7 @@ const DisSystem: React.FC = () => {
 
     const dbKey = 'K' + pageNum?.slice(-2)
     const disSystem = dbData[dbKey as keyof typeof dbData]
-    const disSystemName = disSystem[0].level1 as string
+    // const disSystemName = disSystem[0].level1 as string
     const genderFilterData =
         gender === 'male'
             ? disSystem.filter((e) => filterDisDBData.onlyFemale.indexOf(e.dis_code) === -1)
@@ -40,31 +40,32 @@ const DisSystem: React.FC = () => {
 
     return (
         <>
-            <p className="text-2xl text-start font-mono font-bold">{disSystemName}</p>
-            <form>
-                <div className="flex flex-wrap items-center justify-center">
-                    {disDatas.map((v, index) => {
-                        const hospOnly = filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false
-                        return index % 2 !== 0 ? (
-                            <div
-                                className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                                key={v.dis_code}
-                            >
-                                <p className="sm:text-lg text-center w-1/2 p-4">{v.dis_name}</p>
-                                <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
-                            </div>
-                        ) : (
-                            <div
-                                className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                                key={v.dis_code}
-                            >
-                                <p className="sm:text-lg text-center w-1/2 p-4">{v.dis_name}</p>
-                                <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
-                            </div>
-                        )
-                    })}
-                </div>
-            </form>
+            <div>
+                <form>
+                    <div className="flex flex-wrap items-center justify-center">
+                        {disDatas.map((v, index) => {
+                            const hospOnly = filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false
+                            return index % 2 !== 0 ? (
+                                <div
+                                    className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                    key={v.dis_code}
+                                >
+                                    <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
+                                    <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
+                                </div>
+                            ) : (
+                                <div
+                                    className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                    key={v.dis_code}
+                                >
+                                    <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
+                                    <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
+                                </div>
+                            )
+                        })}
+                    </div>
+                </form>
+            </div>
         </>
     )
 }

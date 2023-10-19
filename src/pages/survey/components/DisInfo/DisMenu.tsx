@@ -12,14 +12,14 @@ const DisMenu: React.FC = () => {
 
     return (
         <>
-            <div className="hidden md:inline-flex">
-                <ul className="menu bg-base-200 w-56 rounded-box text-lg font-bold italic">
-                    <li className="menu-title">Title</li>
+            <div className="hidden lg:flex">
+                <ul className="menu lg:text-lg text-white bg-slate-300 w-56 rounded-box font-bold italic">
+                    <li className="menu-title">系統疾病</li>
                     {Object.values(dbData).map((v, index) =>
                         parseInt(contextData?.pageNum?.slice(-2) as string) === index + 1 ? (
                             <li key={index}>
                                 <p
-                                    className="active hover:bg-blue-300"
+                                    className="active hover:!bg-blue-30"
                                     id={'disinfo' + (index + 1).toString().padStart(2, '0')}
                                     onClick={pangeHandler}
                                 >

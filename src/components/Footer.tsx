@@ -1,15 +1,15 @@
 const Footer: React.FC = () => {
     return (
         <>
-            <footer className="footer items-center px-32 py-4 bg-accent-focus text-base-content">
-                <aside className="items-center grid-flow-col">
+            <footer className="w-full flex flex-col md:flex-row md:justify-between items-center sm:px-12 lg:px-40 py-4 bg-accent-focus text-base-content">
+                <aside className="inline-flex items-center m-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        strokeWidth={1.5}
+                        strokeWidth={2}
                         stroke="currentColor"
-                        className="w-12 h-12"
+                        className="w-6 h-6 lg:w-12 lg:h-12"
                     >
                         <path
                             strokeLinecap="round"
@@ -17,28 +17,28 @@ const Footer: React.FC = () => {
                             d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"
                         />
                     </svg>
-                    <p className="font-bold text-lg">米數醫資股份有限公司©版權所有 MedSig Ltd.</p>
+                    <p className="font-bold lg:text-lg">米數醫資股份有限公司©版權所有 MedSig Ltd.</p>
                 </aside>
-                <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-                    <div className="grid grid-rows-3 gap-4">
-                        <div className="items-center grid grid-flow-col gap-4 justify-start">
+                <nav className="items-center">
+                    <div className="flex flex-col lg:gap-2">
+                        <div className="flex gap-2 items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
-                                className="w-6 h-6"
+                                className="w-4 h-4 lg:w-6 lg:h-6"
                             >
                                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
                                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
                             </svg>
                             <p className="font-bold">medsig4085@gmail.com</p>
                         </div>
-                        <div className="items-center grid grid-flow-col gap-4 justify-start">
+                        <div className="flex gap-2 items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
-                                className="w-6 h-6"
+                                className="w-4 h-4 lg:w-6 lg:h-6"
                             >
                                 <path
                                     fillRule="evenodd"
@@ -48,12 +48,12 @@ const Footer: React.FC = () => {
                             </svg>
                             <p className="font-bold">02-23811717</p>
                         </div>
-                        <div className="items-center grid grid-flow-col gap-4 justify-start">
+                        <div className="flex gap-2 items-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
-                                className="w-6 h-6"
+                                className="w-4 h-4 lg:w-6 lg:h-6"
                             >
                                 <path
                                     fillRule="evenodd"
