@@ -1,6 +1,6 @@
 import dbData from '@/disDB'
 import { useContext } from 'react'
-import DisContext from '@/components/store/dis-context'
+import DisContext from '@/components/store/disContext'
 
 const DisMenu: React.FC = () => {
     const contextData = useContext(DisContext)

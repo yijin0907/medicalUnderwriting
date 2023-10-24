@@ -1,20 +1,36 @@
-import { useState } from 'react'
+import disInitialState from '@/components/store/disInitialState'
+import disReducer from '@/components/store/disReducer'
+import { useEffect, useReducer, useState } from 'react'
 type DisOptionProps = {
     disCode: string
     hospOnly: boolean
 }
 
 const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
+    const [state, dispatch] = useReducer(disReducer, disInitialState)
+
     const [catchSelectedOption, setCatchSelectedOption] = useState(`${props.disCode}_CATCH_N`)
     const [hospSelectedOption, setHospSelectedOption] = useState(`${props.disCode}_HOSP_N`)
     const handleCatchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCatchSelectedOption(event.target.value)
+        console.log(event.target.value.endsWith('N'))
+        event.target.value.endsWith('N')
+            ? dispatch({ type: 'CATCH_N', disCode: props.disCode })
+            : dispatch({ type: 'CATCH_Y', disCode: props.disCode })
     }
     const handleHospOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setHospSelectedOption(event.target.value)
+        console.log(event.target.value.endsWith('N'))
+        event.target.value.endsWith('N')
+            ? dispatch({ type: 'HOSP_N', disCode: props.disCode })
+            : dispatch({ type: 'HOSP_Y', disCode: props.disCode })
     }
     const disCode = props.disCode
     const hospOnly = props.hospOnly
+
+    useEffect(() => {
+        console.log(state)
+    }, [state])
     return (
         <div className="flex flex-col w-1/2 sm:w-3/4 lg:p-2">
             {hospOnly && (

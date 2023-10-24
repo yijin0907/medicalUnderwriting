@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
 import disCardBgImg from '/images/memphis-colorful.webp'
 import DisMenu from './DisMenu'
-import DisContext from '@/components/store/dis-context'
+import DisContext from '@/components/store/disContext'
 
 const DisInfo: React.FC = () => {
     const contextData = useContext(DisContext)
@@ -22,7 +22,7 @@ const DisInfo: React.FC = () => {
         navigate(`/survey/${contextData?.pageNum}`)
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (contextData?.pageNum === 'disinfo00') {
             contextData?.setPageNum('disinfo01')
             navigate(`/survey/personalInfo`)
@@ -34,28 +34,35 @@ const DisInfo: React.FC = () => {
     }, [contextData, navigate])
     return (
         <>
-            <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
-                <div className="p-10 mx-auto w-full">
-                    <p className="my-4 text-4xl text-center font-mono font-bold">Disease Infomation</p>
-                    <div className="flex mx-auto lg:p-10">
-                        <div className="lg:m-4">{contextData?.pageNum !== 'disinfo00' && <DisMenu />}</div>
-                        <div className="mx-4">
-                            {contextData?.pageNum !== 'disinfo00' && <DisSystem />}
-                            <div className="flex items-center justify-evenly my-10 lg:space-x-5">
-                                <button
-                                    className="btn sm:btn-wide btn-outline btn-accent"
-                                    onClick={previousPageHandler}
-                                >
-                                    上一頁
-                                </button>
-                                <button className="btn sm:btn-wide btn-outline btn-accent" onClick={nextPageHandler}>
-                                    下一頁
-                                </button>
+            {contextData?.pageNum !== 'disinfo00' && (
+                <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
+                    <div className="p-10 mx-auto w-full">
+                        <p className="my-4 text-4xl text-center font-mono font-bold">Disease Infomation</p>
+                        <div className="flex mx-auto lg:p-10">
+                            <div className="lg:m-4">
+                                <DisMenu />
+                            </div>
+                            <div className="mx-4">
+                                <DisSystem />
+                                <div className="flex items-center justify-evenly my-10 lg:space-x-5">
+                                    <button
+                                        className="btn sm:btn-wide btn-outline btn-accent"
+                                        onClick={previousPageHandler}
+                                    >
+                                        上一頁
+                                    </button>
+                                    <button
+                                        className="btn sm:btn-wide btn-outline btn-accent"
+                                        onClick={nextPageHandler}
+                                    >
+                                        下一頁
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }

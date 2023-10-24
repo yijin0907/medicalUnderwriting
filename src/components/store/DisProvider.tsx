@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import DisContext from './dis-context'
+import DisContext from './disContext'
 
 type ContextProviderProps = {
     children: React.ReactNode

@@ -1,4 +1,4 @@
-import DisContext from '@/components/store/dis-context'
+import DisContext from '@/components/store/disContext'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
