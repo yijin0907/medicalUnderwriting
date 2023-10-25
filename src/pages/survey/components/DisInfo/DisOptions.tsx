@@ -13,24 +13,24 @@ const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
     const [hospSelectedOption, setHospSelectedOption] = useState(`${props.disCode}_HOSP_N`)
     const handleCatchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCatchSelectedOption(event.target.value)
-        console.log(event.target.value.endsWith('N'))
-        event.target.value.endsWith('N')
-            ? dispatch({ type: 'CATCH_N', disCode: props.disCode })
-            : dispatch({ type: 'CATCH_Y', disCode: props.disCode })
     }
     const handleHospOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setHospSelectedOption(event.target.value)
-        console.log(event.target.value.endsWith('N'))
-        event.target.value.endsWith('N')
-            ? dispatch({ type: 'HOSP_N', disCode: props.disCode })
-            : dispatch({ type: 'HOSP_Y', disCode: props.disCode })
     }
     const disCode = props.disCode
     const hospOnly = props.hospOnly
 
     useEffect(() => {
+        catchSelectedOption.endsWith('Y')
+            ? dispatch({ type: 'CATCH_Y', disCode: disCode })
+            : dispatch({ type: 'CATCH_N', disCode: disCode })
+
+        hospSelectedOption.endsWith('Y')
+            ? dispatch({ type: 'HOSP_Y', disCode: disCode })
+            : dispatch({ type: 'HOSP_N', disCode: disCode })
+
         console.log(state)
-    }, [state])
+    }, [catchSelectedOption, hospSelectedOption, disCode, state])
     return (
         <div className="flex flex-col w-1/2 sm:w-3/4 lg:p-2">
             {hospOnly && (

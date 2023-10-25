@@ -1,7 +1,5 @@
 const disInitialState = {
-    disCatchN: [],
     disCatchY: [],
-    disHospN: [],
     disHospY: [],
 }
 

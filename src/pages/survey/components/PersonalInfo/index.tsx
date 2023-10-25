@@ -14,7 +14,7 @@ const PersonalInfo: React.FC = () => {
         defaultValues: {
             name: 'AAAAA',
             gender: 'male',
-            date: '1991-01-01',
+            date: '1975-01-01',
         },
     })
 
@@ -23,6 +23,7 @@ const PersonalInfo: React.FC = () => {
         console.log(data)
         navigate('/survey/disinfo01')
     }
+
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${cardBgImg})` }}>
