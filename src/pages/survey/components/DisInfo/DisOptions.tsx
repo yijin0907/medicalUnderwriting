@@ -1,6 +1,6 @@
 import disInitialState from '@/components/store/disInitialState'
 import disReducer from '@/components/store/disReducer'
-import { useEffect, useReducer, useState } from 'react'
+import { useReducer, useState } from 'react'
 type DisOptionProps = {
     disCode: string
     hospOnly: boolean
@@ -9,28 +9,25 @@ type DisOptionProps = {
 const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
     const [state, dispatch] = useReducer(disReducer, disInitialState)
 
-    const [catchSelectedOption, setCatchSelectedOption] = useState(`${props.disCode}_CATCH_N`)
-    const [hospSelectedOption, setHospSelectedOption] = useState(`${props.disCode}_HOSP_N`)
-    const handleCatchOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCatchSelectedOption(event.target.value)
-    }
-    const handleHospOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setHospSelectedOption(event.target.value)
-    }
-    const disCode = props.disCode
-    const hospOnly = props.hospOnly
+    const { disCode, hospOnly } = props
+    const catchShow = state.disCatchY.indexOf(disCode) === -1 ? `${disCode}_CATCH_N` : `${disCode}_CATCH_Y`
+    const hospShow = state.disHospY.indexOf(disCode) === -1 ? `${disCode}_HOSP_N` : `${disCode}_HOSP_Y`
 
-    useEffect(() => {
-        catchSelectedOption.endsWith('Y')
+    const [catchSelectedOption, setCatchSelectedOption] = useState(catchShow)
+    const [hospSelectedOption, setHospSelectedOption] = useState(hospShow)
+    const handleCatchOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCatchSelectedOption(e.target.value)
+        e.target.value.endsWith('Y')
             ? dispatch({ type: 'CATCH_Y', disCode: disCode })
             : dispatch({ type: 'CATCH_N', disCode: disCode })
-
-        hospSelectedOption.endsWith('Y')
+    }
+    const handleHospOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setHospSelectedOption(e.target.value)
+        e.target.value.endsWith('Y')
             ? dispatch({ type: 'HOSP_Y', disCode: disCode })
             : dispatch({ type: 'HOSP_N', disCode: disCode })
+    }
 
-        console.log(state)
-    }, [catchSelectedOption, hospSelectedOption, disCode, state])
     return (
         <div className="flex flex-col w-1/2 sm:w-3/4 lg:p-2">
             {hospOnly && (
