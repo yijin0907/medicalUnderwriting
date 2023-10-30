@@ -1,6 +1,7 @@
 import disInitialState from '@/components/store/disInitialState'
 import disReducer from '@/components/store/disReducer'
 import { useReducer, useState } from 'react'
+
 type DisOptionProps = {
     disCode: string
     hospOnly: boolean

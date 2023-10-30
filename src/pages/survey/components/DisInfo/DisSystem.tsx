@@ -40,29 +40,35 @@ const DisSystem: React.FC = () => {
 
     return (
         <>
-            <div>
+            <div className="">
                 <form>
                     <div className="flex flex-wrap items-center justify-center">
-                        {disDatas.map((v, index) => {
-                            const hospOnly = filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false
-                            return index % 2 !== 0 ? (
-                                <div
-                                    className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                                    key={v.dis_code}
-                                >
-                                    <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                    <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
-                                </div>
-                            ) : (
-                                <div
-                                    className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                                    key={v.dis_code}
-                                >
-                                    <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                    <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
-                                </div>
-                            )
-                        })}
+                        {disDatas.length !== 0 ? (
+                            disDatas.map((v, index) => {
+                                const hospOnly = filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false
+                                return index % 2 !== 0 ? (
+                                    <div
+                                        className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                        key={v.dis_code}
+                                    >
+                                        <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
+                                        <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                        key={v.dis_code}
+                                    >
+                                        <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
+                                        <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
+                                    </div>
+                                )
+                            })
+                        ) : (
+                            <div className="w-full opacity-[70%] bg-blue-300 rounded-xl mt-4 flex justify-center shadow-2xl">
+                                <p className="lg:text-xl xl:mx-72 p-6 font-mono font-bold">No System Disease！！！</p>
+                            </div>
+                        )}
                     </div>
                 </form>
             </div>

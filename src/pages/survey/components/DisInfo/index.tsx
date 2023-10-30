@@ -42,7 +42,7 @@ const DisInfo: React.FC = () => {
                             <div className="lg:m-4">
                                 <DisMenu />
                             </div>
-                            <div className="mx-4">
+                            <div className="mx-auto px-4">
                                 <DisSystem />
                                 <div className="flex items-center justify-evenly my-10 lg:space-x-5">
                                     <button

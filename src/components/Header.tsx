@@ -4,16 +4,16 @@ const Header: React.FC = () => {
     const navigate = useNavigate()
     return (
         <>
-            <div className="bg-warning text-base-content px-32 py-3 grid grid-cols-2 gap-4">
-                <div>
+            <div className="bg-warning text-base-content lg:px-32 px-6 py-3 flex justify-between items-center">
+                <div className="px-2">
                     <div className="avatar">
                         <div className="w-16 mask mask-squircle">
                             <img src="/images/logo.svg" onClick={() => navigate('/')} />
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row-reverse">
-                    <div className="p-4">
+                <div className="flex">
+                    <div className="sm:p-4 p-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
                             />
                         </svg>
                     </div>
-                    <div className="p-4">
+                    <div className="sm:p-4 p-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
                             />
                         </svg>
                     </div>
-                    <div className="p-4">
+                    <div className="sm:p-4 p-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
