@@ -1,9 +1,9 @@
 import dbData from '@/disDB'
 import { useContext } from 'react'
-import DisContext from '@/components/store/disContext'
+import { DisPageNumContext } from '@/components/store/disContext'
 
 const DisMenu: React.FC = () => {
-    const contextData = useContext(DisContext)
+    const contextData = useContext(DisPageNumContext)
     // const navigate = useNavigate()
 
     const pangeHandler = (event: React.MouseEvent<HTMLParagraphElement>) => {

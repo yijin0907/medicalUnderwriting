@@ -1,6 +1,5 @@
-import disInitialState from '@/components/store/disInitialState'
-import disReducer from '@/components/store/disReducer'
-import { useReducer, useState } from 'react'
+import { DisOptionReducerContext } from '@/components/store/disContext'
+import { useContext, useState } from 'react'
 
 type DisOptionProps = {
     disCode: string
@@ -8,25 +7,28 @@ type DisOptionProps = {
 }
 
 const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
-    const [state, dispatch] = useReducer(disReducer, disInitialState)
+    // const [state, dispatch] = useReducer(disReducer, disInitialState)
+    const disOptionContextData = useContext(DisOptionReducerContext)
 
     const { disCode, hospOnly } = props
-    const catchShow = state.disCatchY.indexOf(disCode) === -1 ? `${disCode}_CATCH_N` : `${disCode}_CATCH_Y`
-    const hospShow = state.disHospY.indexOf(disCode) === -1 ? `${disCode}_HOSP_N` : `${disCode}_HOSP_Y`
+    const catchShow =
+        disOptionContextData?.state.disCatchY.indexOf(disCode) === -1 ? `${disCode}_CATCH_N` : `${disCode}_CATCH_Y`
+    const hospShow =
+        disOptionContextData?.state.disHospY.indexOf(disCode) === -1 ? `${disCode}_HOSP_N` : `${disCode}_HOSP_Y`
 
     const [catchSelectedOption, setCatchSelectedOption] = useState(catchShow)
     const [hospSelectedOption, setHospSelectedOption] = useState(hospShow)
     const handleCatchOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCatchSelectedOption(e.target.value)
         e.target.value.endsWith('Y')
-            ? dispatch({ type: 'CATCH_Y', disCode: disCode })
-            : dispatch({ type: 'CATCH_N', disCode: disCode })
+            ? disOptionContextData?.dispatch({ type: 'CATCH_Y', disCode: disCode })
+            : disOptionContextData?.dispatch({ type: 'CATCH_N', disCode: disCode })
     }
     const handleHospOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHospSelectedOption(e.target.value)
         e.target.value.endsWith('Y')
-            ? dispatch({ type: 'HOSP_Y', disCode: disCode })
-            : dispatch({ type: 'HOSP_N', disCode: disCode })
+            ? disOptionContextData?.dispatch({ type: 'HOSP_Y', disCode: disCode })
+            : disOptionContextData?.dispatch({ type: 'HOSP_N', disCode: disCode })
     }
 
     return (

@@ -1,10 +1,24 @@
 import { createContext } from 'react'
 
-type StateContextType = {
+type PageNumContextType = {
     pageNum: string
     setPageNum: React.Dispatch<React.SetStateAction<string>>
 }
 
-const DisContext = createContext<null | StateContextType>(null)
+type DisReducerActionKind = {
+    type: 'CATCH_N' | 'CATCH_Y' | 'HOSP_N' | 'HOSP_Y'
+    disCode: string
+}
 
-export default DisContext
+type OpiontReducerContextType = {
+    state: {
+        disCatchY: string[]
+        disHospY: string[]
+    }
+    dispatch: React.Dispatch<DisReducerActionKind>
+}
+
+export const DisPageNumContext = createContext<null | PageNumContextType>(null)
+export const DisOptionReducerContext = createContext<null | OpiontReducerContextType>(null)
+
+export default { DisPageNumContext, DisOptionReducerContext }

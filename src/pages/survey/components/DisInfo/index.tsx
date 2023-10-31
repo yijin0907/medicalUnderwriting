@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
 import disCardBgImg from '/images/memphis-colorful.webp'
 import DisMenu from './DisMenu'
-import DisContext from '@/components/store/disContext'
+import { DisOptionReducerContext, DisPageNumContext } from '@/components/store/disContext'
 
 const DisInfo: React.FC = () => {
-    const contextData = useContext(DisContext)
+    const contextData = useContext(DisPageNumContext)
+    const disOptionContextData = useContext(DisOptionReducerContext)
     const navigate = useNavigate()
 
     const previousPageHandler = () => {
@@ -23,6 +24,7 @@ const DisInfo: React.FC = () => {
     }
 
     useLayoutEffect(() => {
+        console.log(disOptionContextData?.state)
         if (contextData?.pageNum === 'disinfo00') {
             contextData?.setPageNum('disinfo01')
             navigate(`/survey/personalInfo`)
@@ -31,7 +33,7 @@ const DisInfo: React.FC = () => {
             navigate(`/survey/${contextData?.pageNum}`)
             window.scrollTo({ top: 0, left: 0 })
         }
-    }, [contextData, navigate])
+    }, [contextData, navigate, disOptionContextData])
     return (
         <>
             {contextData?.pageNum !== 'disinfo00' && (

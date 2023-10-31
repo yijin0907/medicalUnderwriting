@@ -1,4 +1,4 @@
-import DisContext from '@/components/store/disContext'
+import { DisPageNumContext } from '@/components/store/disContext'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
@@ -14,7 +14,7 @@ type DisInfomation = {
 }
 
 const DisSystem: React.FC = () => {
-    const contextData = useContext(DisContext)
+    const contextData = useContext(DisPageNumContext)
 
     const pageNum = contextData?.pageNum
     const gender: string = 'female'
