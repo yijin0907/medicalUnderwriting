@@ -4,6 +4,7 @@ import NotFound from '@/pages/notFound'
 import Survey from '@/pages/survey'
 import PersonalInfo from '@/pages/survey/components/PersonalInfo'
 import DisInfo from './pages/survey/components/DisInfo'
+import FillOut from './pages/survey/components/FillOut'
 
 const routes: RouteObject[] = [
     {
@@ -18,6 +19,10 @@ const routes: RouteObject[] = [
             {
                 path: '/survey/personalInfo',
                 element: <PersonalInfo />,
+            },
+            {
+                path: '/survey/fillOut',
+                element: <FillOut />,
             },
             {
                 path: '/survey/:items',

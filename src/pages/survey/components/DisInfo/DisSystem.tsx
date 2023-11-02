@@ -2,7 +2,7 @@ import { DisPageNumContext } from '@/components/store/disContext'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 // import { useNavigate } from 'react-router-dom'
 
 type DisInfomation = {
@@ -45,22 +45,18 @@ const DisSystem: React.FC = () => {
                     <div className="flex flex-wrap items-center justify-center">
                         {disDatas.length !== 0 ? (
                             disDatas.map((v, index) => {
-                                const hospOnly = filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false
-                                return index % 2 !== 0 ? (
+                                return (
                                     <div
-                                        className="opacity-[85%] w-full bg-primary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
+                                        className={`opacity-[85%] w-full ${
+                                            index % 2 !== 0 ? 'bg-primary' : 'bg-secondary'
+                                        } rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300`}
                                         key={v.dis_code}
                                     >
                                         <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                        <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
-                                    </div>
-                                ) : (
-                                    <div
-                                        className="opacity-[85%] w-full bg-secondary rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300"
-                                        key={v.dis_code}
-                                    >
-                                        <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                        <DisOptions disCode={v.dis_code} hospOnly={hospOnly} />
+                                        <DisOptions
+                                            disCode={v.dis_code}
+                                            hospOnly={filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false}
+                                        />
                                     </div>
                                 )
                             })

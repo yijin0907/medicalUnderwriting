@@ -14,29 +14,35 @@ const DisInfo: React.FC = () => {
         contextData?.setPageNum(
             'disinfo' + (parseInt(contextData?.pageNum.slice(-2), 10) - 1).toString().padStart(2, '0')
         )
-        navigate(`/survey/${contextData?.pageNum}`)
     }
     const nextPageHandler = () => {
         contextData?.setPageNum(
             'disinfo' + (parseInt(contextData?.pageNum.slice(-2), 10) + 1).toString().padStart(2, '0')
         )
-        navigate(`/survey/${contextData?.pageNum}`)
     }
 
     useLayoutEffect(() => {
-        console.log(disOptionContextData?.state)
-        if (contextData?.pageNum === 'disinfo00') {
-            contextData?.setPageNum('disinfo01')
-            navigate(`/survey/personalInfo`)
-            window.scrollTo({ top: 0, left: 0 })
-        } else {
-            navigate(`/survey/${contextData?.pageNum}`)
-            window.scrollTo({ top: 0, left: 0 })
+        console.log(contextData?.pageNum)
+        switch (contextData?.pageNum) {
+            case 'disinfo00':
+                // contextData?.setPageNum('disinfo01')
+                navigate(`/survey/personalInfo`)
+                window.scrollTo({ top: 0, left: 0 })
+                break
+            case 'disinfo22':
+                // contextData?.setPageNum('disinfo21')
+                navigate(`/survey/fillOut`)
+                window.scrollTo({ top: 0, left: 0 })
+                break
+            default:
+                navigate(`/survey/${contextData?.pageNum}`)
+                window.scrollTo({ top: 0, left: 0 })
+                break
         }
     }, [contextData, navigate, disOptionContextData])
     return (
         <>
-            {contextData?.pageNum !== 'disinfo00' && (
+            {contextData?.pageNum !== 'disinfo00' && contextData?.pageNum !== 'disinfo22' && (
                 <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
                     <div className="p-10 mx-auto w-full">
                         <p className="my-4 text-4xl text-center font-mono font-bold">Disease Infomation</p>
