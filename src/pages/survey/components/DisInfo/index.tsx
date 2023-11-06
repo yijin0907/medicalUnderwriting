@@ -1,57 +1,54 @@
-import { useContext, useLayoutEffect } from 'react'
+import { useContext, useLayoutEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
 import disCardBgImg from '/images/memphis-colorful.webp'
 import DisMenu from './DisMenu'
-import { DisOptionReducerContext, DisPageNumContext } from '@/components/store/disContext'
+import { DisOptionReducerContext } from '@/components/store/disContext'
 
 const DisInfo: React.FC = () => {
-    const contextData = useContext(DisPageNumContext)
+    const [pageNum, setPageNum] = useState('01')
     const disOptionContextData = useContext(DisOptionReducerContext)
     const navigate = useNavigate()
 
-    const previousPageHandler = () => {
-        contextData?.setPageNum(
-            'disinfo' + (parseInt(contextData?.pageNum.slice(-2), 10) - 1).toString().padStart(2, '0')
-        )
+    function previousPageHandler() {
+        setPageNum((pageNum) => (Number(pageNum) - 1).toString().padStart(2, '0'))
     }
-    const nextPageHandler = () => {
-        contextData?.setPageNum(
-            'disinfo' + (parseInt(contextData?.pageNum.slice(-2), 10) + 1).toString().padStart(2, '0')
-        )
+    function nextPageHandler() {
+        setPageNum((pageNum) => (Number(pageNum) + 1).toString().padStart(2, '0'))
+    }
+    function onSetPageNum(pageNum: string) {
+        setPageNum(pageNum)
     }
 
     useLayoutEffect(() => {
-        console.log(contextData?.pageNum)
-        switch (contextData?.pageNum) {
-            case 'disinfo00':
-                // contextData?.setPageNum('disinfo01')
+        console.log(pageNum)
+        switch (pageNum) {
+            case '00':
                 navigate(`/survey/personalInfo`)
                 window.scrollTo({ top: 0, left: 0 })
                 break
-            case 'disinfo22':
-                // contextData?.setPageNum('disinfo21')
+            case '22':
                 navigate(`/survey/fillOut`)
                 window.scrollTo({ top: 0, left: 0 })
                 break
             default:
-                navigate(`/survey/${contextData?.pageNum}`)
+                navigate(`/survey/disInfo${pageNum}`)
                 window.scrollTo({ top: 0, left: 0 })
                 break
         }
-    }, [contextData, navigate, disOptionContextData])
+    }, [pageNum, navigate, disOptionContextData])
     return (
         <>
-            {contextData?.pageNum !== 'disinfo00' && contextData?.pageNum !== 'disinfo22' && (
+            {pageNum !== '00' && pageNum !== '22' && (
                 <div className="w-full" style={{ backgroundImage: `url(${disCardBgImg})` }}>
                     <div className="p-10 mx-auto w-full">
                         <p className="my-4 text-4xl text-center font-mono font-bold">Disease Infomation</p>
                         <div className="flex mx-auto lg:p-10">
                             <div className="lg:m-4">
-                                <DisMenu />
+                                <DisMenu pageNum={pageNum} onSetPageNum={onSetPageNum} />
                             </div>
                             <div className="mx-auto px-4">
-                                <DisSystem />
+                                <DisSystem pageNum={pageNum} />
                                 <div className="flex items-center justify-evenly my-10 lg:space-x-5">
                                     <button
                                         className="btn sm:btn-wide btn-outline btn-accent"

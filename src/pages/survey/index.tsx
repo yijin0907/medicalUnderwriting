@@ -2,7 +2,7 @@ import Container from '@/components/Container'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import DisOptionReducerProvider from '@/components/store/DisOptionReducerProvider'
-import DisPageNumProvider from '@/components/store/DisPageNumProvider'
+
 import { Outlet } from 'react-router-dom'
 
 const Survey: React.FC = () => {
@@ -10,11 +10,9 @@ const Survey: React.FC = () => {
         <>
             <Header />
             <Container>
-                <DisPageNumProvider>
-                    <DisOptionReducerProvider>
-                        <Outlet />
-                    </DisOptionReducerProvider>
-                </DisPageNumProvider>
+                <DisOptionReducerProvider>
+                    <Outlet />
+                </DisOptionReducerProvider>
             </Container>
             <Footer />
         </>

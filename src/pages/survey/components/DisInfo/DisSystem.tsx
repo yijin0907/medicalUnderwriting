@@ -1,9 +1,6 @@
-import { DisPageNumContext } from '@/components/store/disContext'
 import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
-import { useContext, useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom'
 
 type DisInfomation = {
     level1: string
@@ -13,14 +10,11 @@ type DisInfomation = {
     dis_code: string
 }
 
-const DisSystem: React.FC = () => {
-    const contextData = useContext(DisPageNumContext)
-
-    const pageNum = contextData?.pageNum
+const DisSystem = ({ pageNum }: { pageNum: string }) => {
     const gender: string = 'female'
     const age = 20
 
-    const dbKey = 'K' + pageNum?.slice(-2)
+    const dbKey = 'K' + pageNum
     const disSystem = dbData[dbKey as keyof typeof dbData]
     // const disSystemName = disSystem[0].level1 as string
     const genderFilterData =

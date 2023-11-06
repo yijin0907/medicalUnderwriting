@@ -1,14 +1,10 @@
-import { DisPageNumContext } from '@/components/store/disContext'
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const FillOut: React.FC = () => {
-    const contextData = useContext(DisPageNumContext)
     const navigate = useNavigate()
 
     const correctHandler = () => {
-        contextData?.setPageNum('disinfo21')
-        navigate('/survey/disinfo21')
+        navigate('/survey/personalInfo')
     }
 
     const confirmHandler = () => {}
