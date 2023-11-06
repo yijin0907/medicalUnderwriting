@@ -1,13 +1,11 @@
-import { useContext, useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
 import disCardBgImg from '/images/memphis-colorful.webp'
 import DisMenu from './DisMenu'
-import { DisOptionReducerContext } from '@/components/store/disContext'
 
 const DisInfo: React.FC = () => {
     const [pageNum, setPageNum] = useState('01')
-    const disOptionContextData = useContext(DisOptionReducerContext)
     const navigate = useNavigate()
 
     function previousPageHandler() {
@@ -36,7 +34,7 @@ const DisInfo: React.FC = () => {
                 window.scrollTo({ top: 0, left: 0 })
                 break
         }
-    }, [pageNum, navigate, disOptionContextData])
+    }, [pageNum, navigate])
     return (
         <>
             {pageNum !== '00' && pageNum !== '22' && (

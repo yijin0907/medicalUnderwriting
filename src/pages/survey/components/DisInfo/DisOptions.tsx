@@ -21,14 +21,14 @@ const DisOptions: React.FC<DisOptionProps> = (props: DisOptionProps) => {
     const handleCatchOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCatchSelectedOption(e.target.value)
         e.target.value.endsWith('Y')
-            ? disOptionContextData?.dispatch({ type: 'CATCH_Y', disCode: disCode })
-            : disOptionContextData?.dispatch({ type: 'CATCH_N', disCode: disCode })
+            ? disOptionContextData?.dispatch({ type: 'CATCH_Y', payload: disCode })
+            : disOptionContextData?.dispatch({ type: 'CATCH_N', payload: disCode })
     }
     const handleHospOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHospSelectedOption(e.target.value)
         e.target.value.endsWith('Y')
-            ? disOptionContextData?.dispatch({ type: 'HOSP_Y', disCode: disCode })
-            : disOptionContextData?.dispatch({ type: 'HOSP_N', disCode: disCode })
+            ? disOptionContextData?.dispatch({ type: 'HOSP_Y', payload: disCode })
+            : disOptionContextData?.dispatch({ type: 'HOSP_N', payload: disCode })
     }
 
     return (

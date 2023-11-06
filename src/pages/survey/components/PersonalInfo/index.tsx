@@ -1,20 +1,24 @@
 import cardBgImg from '/images/blue-snow.webp'
 import { useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useReducer } from 'react'
+import personalInfoReducer from '@/components/store/personalInfoReducer'
+import personalInfoInitialState from '@/components/store/personInfoInitialState'
 
 type Inputs = {
-    name: string
+    username: string
     gender: string
-    date: string
+    birth: string
 }
 
 const PersonalInfo: React.FC = () => {
+    const [state, dispatch] = useReducer(personalInfoReducer, personalInfoInitialState)
     const { register, handleSubmit } = useForm<Inputs>({
         shouldUseNativeValidation: true,
         defaultValues: {
-            name: 'AAAAA',
+            username: 'AAAAA',
             gender: 'male',
-            date: '1975-01-01',
+            birth: '1975-01-01',
         },
     })
 
@@ -23,7 +27,6 @@ const PersonalInfo: React.FC = () => {
         console.log(data)
         navigate('/survey/disinfo01')
     }
-
     return (
         <>
             <div className="w-full" style={{ backgroundImage: `url(${cardBgImg})` }}>
@@ -32,15 +35,15 @@ const PersonalInfo: React.FC = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-wrap items-center justify-center">
                             <div className="opacity-[85%] w-full sm:w-[55%] bg-secondary rounded-xl mb-10 p-2 flex justify-between items-center  shadow-2xl hover:scale-105 duration-300">
-                                <label className="text-xl font-bold text-gray-700 grow" htmlFor="name">
+                                <label className="text-xl font-bold text-gray-700 grow" htmlFor="username">
                                     姓名
                                 </label>
                                 <input
                                     className="rounded-md w-1/2"
-                                    id="name"
+                                    id="username"
                                     type="text"
                                     placeholder="姓名"
-                                    {...register('name', { required: 'Please enter your name.' })}
+                                    {...register('username', { required: 'Please enter your name.' })}
                                 />
                             </div>
 
@@ -75,10 +78,10 @@ const PersonalInfo: React.FC = () => {
                             </div>
 
                             <div className="opacity-[85%] w-full sm:w-[55%] bg-secondary rounded-xl mb-10 p-2 flex justify-between items-center shadow-2xl hover:scale-105 duration-300">
-                                <label className="text-xl font-bold text-gray-700" htmlFor="date">
+                                <label className="text-xl font-bold text-gray-700" htmlFor="birth">
                                     出生年月日
                                 </label>
-                                <input className="w-1/2 rounded-md" id="date" type="date" {...register('date')} />
+                                <input className="w-1/2 rounded-md" id="birth" type="date" {...register('birth')} />
                             </div>
 
                             <div className="flex items-center justify-end w-full sm:w-[55%] mb-10 p-2">

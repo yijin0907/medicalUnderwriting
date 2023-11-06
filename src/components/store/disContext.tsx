@@ -7,7 +7,7 @@ import { createContext } from 'react'
 
 type DisReducerActionKind = {
     type: 'CATCH_N' | 'CATCH_Y' | 'HOSP_N' | 'HOSP_Y'
-    disCode: string
+    payload: string
 }
 
 type OpiontReducerContextType = {
