@@ -1,19 +1,19 @@
 import cardBgImg from '/images/blue-snow.webp'
 import { useNavigate } from 'react-router-dom'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import { useReducer } from 'react'
-import personalInfoReducer from '@/components/store/personalInfoReducer'
-import personalInfoInitialState from '@/components/store/personInfoInitialState'
+import { useForm } from 'react-hook-form'
+import { FormEvent, useContext } from 'react'
+import { PersonalInfoReducerContext } from '@/components/store/personalInfoContext'
 
-type Inputs = {
+type InputType = {
     username: string
     gender: string
     birth: string
 }
 
 const PersonalInfo: React.FC = () => {
-    const [state, dispatch] = useReducer(personalInfoReducer, personalInfoInitialState)
-    const { register, handleSubmit } = useForm<Inputs>({
+    // const [state, dispatch] = useReducer(personalInfoReducer, personalInfoInitialState)
+    const personalData = useContext(PersonalInfoReducerContext)
+    const { register, getValues } = useForm<InputType>({
         shouldUseNativeValidation: true,
         defaultValues: {
             username: 'AAAAA',
@@ -23,8 +23,24 @@ const PersonalInfo: React.FC = () => {
     })
 
     const navigate = useNavigate()
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data)
+    function handleClick(e: FormEvent) {
+        e.preventDefault()
+        // dispatch({
+        //     type: 'update',
+        //     payload: {
+        //         username: getValues('username'),
+        //         gender: getValues('gender'),
+        //         birth: getValues('birth'),
+        //     },
+        // })
+        personalData?.dispatch({
+            type: 'update',
+            payload: {
+                username: getValues('username'),
+                gender: getValues('gender'),
+                birth: getValues('birth'),
+            },
+        })
         navigate('/survey/disinfo01')
     }
     return (
@@ -32,7 +48,7 @@ const PersonalInfo: React.FC = () => {
             <div className="w-full" style={{ backgroundImage: `url(${cardBgImg})` }}>
                 <div className="p-10 mx-auto w-4/5">
                     <p className="mb-10 text-4xl text-center font-mono font-bold">Personal Infomation</p>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form>
                         <div className="flex flex-wrap items-center justify-center">
                             <div className="opacity-[85%] w-full sm:w-[55%] bg-secondary rounded-xl mb-10 p-2 flex justify-between items-center  shadow-2xl hover:scale-105 duration-300">
                                 <label className="text-xl font-bold text-gray-700 grow" htmlFor="username">
@@ -85,7 +101,7 @@ const PersonalInfo: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end w-full sm:w-[55%] mb-10 p-2">
-                                <button type="submit" className="btn btn-accent btn-block btn-outline">
+                                <button className="btn btn-accent btn-block btn-outline" onClick={handleClick}>
                                     下一頁
                                 </button>
                             </div>

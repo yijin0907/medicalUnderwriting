@@ -1,6 +1,9 @@
+import { PersonalInfoReducerContext } from '@/components/store/personalInfoContext'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const FillOut: React.FC = () => {
+    const personalData = useContext(PersonalInfoReducerContext)
     const navigate = useNavigate()
 
     const correctHandler = () => {
@@ -9,6 +12,9 @@ const FillOut: React.FC = () => {
 
     const confirmHandler = () => {}
 
+    useEffect(() => {
+        console.log(personalData?.state)
+    })
     return (
         <>
             <div>

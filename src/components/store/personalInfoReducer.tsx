@@ -1,22 +1,20 @@
-type PersonalInfoState = {
+type PersonalInfoType = {
     username: string
     gender: string
     birth: string
 }
 
 type PersonalInfoReducerActionKind = {
-    type: 'username' | 'gender' | 'birth'
-    payload: string
+    type: 'update'
+    payload: PersonalInfoType
 }
 
-const personalInfoReducer = (state: PersonalInfoState, action: PersonalInfoReducerActionKind) => {
+const personalInfoReducer = (state: PersonalInfoType, action: PersonalInfoReducerActionKind) => {
     switch (action.type) {
-        case 'username':
-            return { ...state, username: action.payload }
-        case 'gender':
-            return { ...state, gender: action.payload }
-        case 'birth':
-            return { ...state, birth: action.payload }
+        case 'update':
+            state = { ...action.payload }
+            console.log(state)
+            return state
     }
 }
 
