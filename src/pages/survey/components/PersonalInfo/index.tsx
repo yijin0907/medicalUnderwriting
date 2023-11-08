@@ -16,9 +16,9 @@ const PersonalInfo: React.FC = () => {
     const { register, getValues } = useForm<InputType>({
         shouldUseNativeValidation: true,
         defaultValues: {
-            username: 'AAAAA',
-            gender: 'male',
-            birth: '1975-01-01',
+            username: personalData?.state.username ? personalData?.state.username : 'ABC',
+            gender: personalData?.state.gender ? personalData?.state.gender : 'male',
+            birth: personalData?.state.birth ? personalData?.state.birth : '1975-01-01',
         },
     })
 

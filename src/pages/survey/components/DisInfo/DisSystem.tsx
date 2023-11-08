@@ -48,6 +48,7 @@ const DisSystem = ({ pageNum }: { pageNum: string }) => {
                                     >
                                         <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
                                         <DisOptions
+                                            disName={v.dis_name}
                                             disCode={v.dis_code}
                                             hospOnly={filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false}
                                         />

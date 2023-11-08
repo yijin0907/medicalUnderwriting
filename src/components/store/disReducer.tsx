@@ -1,26 +1,32 @@
+type DisType = {
+    disCode: string
+    disName: string
+}
+
 type DisReducerState = {
-    disCatchY: string[]
-    disHospY: string[]
+    disCatchY: Array<DisType>
+    disHospY: Array<DisType>
 }
 
 type DisReducerActionKind = {
     type: 'CATCH_N' | 'CATCH_Y' | 'HOSP_N' | 'HOSP_Y'
-    payload: string
+    payload: DisType
 }
 
 const disReducer = (state: DisReducerState, action: DisReducerActionKind) => {
     switch (action.type) {
         case 'CATCH_Y':
-            state.disCatchY = [...new Set([...state.disCatchY, action.payload])]
+            // state.disCatchY = [...new Set([...state.disCatchY, action.payload])]
+            state.disCatchY = [...state.disCatchY, action.payload]
             return state
         case 'CATCH_N':
-            state.disCatchY = state.disCatchY.filter((item) => item !== action.payload)
+            state.disCatchY = state.disCatchY.filter((item) => item.disCode !== action.payload.disCode)
             return state
         case 'HOSP_Y':
-            state.disHospY = [...new Set([...state.disHospY, action.payload])]
+            state.disHospY = [...state.disHospY, action.payload]
             return state
         case 'HOSP_N':
-            state.disHospY = state.disHospY.filter((item) => item !== action.payload)
+            state.disHospY = state.disHospY.filter((item) => item.disCode !== action.payload.disCode)
             return state
         default:
             return state

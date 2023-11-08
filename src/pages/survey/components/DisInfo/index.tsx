@@ -19,7 +19,6 @@ const DisInfo: React.FC = () => {
     }
 
     useLayoutEffect(() => {
-        console.log(pageNum)
         switch (pageNum) {
             case '00':
                 navigate(`/survey/personalInfo`)
