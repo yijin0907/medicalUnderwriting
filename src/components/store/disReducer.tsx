@@ -9,7 +9,7 @@ type DisReducerState = {
 }
 
 type DisReducerActionKind = {
-    type: 'CATCH_N' | 'CATCH_Y' | 'HOSP_N' | 'HOSP_Y'
+    type: string
     payload: DisType
 }
 

@@ -1,6 +1,6 @@
-import DisOptions from './DisOptions'
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
+import DisSelectedOptions from './DisSelectedOptions'
 
 type DisInfomation = {
     level1: string
@@ -47,7 +47,7 @@ const DisSystem = ({ pageNum }: { pageNum: string }) => {
                                         key={v.dis_code}
                                     >
                                         <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                        <DisOptions
+                                        <DisSelectedOptions
                                             disName={v.dis_name}
                                             disCode={v.dis_code}
                                             hospOnly={filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false}
