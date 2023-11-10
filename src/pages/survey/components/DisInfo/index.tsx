@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import DisSystem from './DisSystem'
 import disCardBgImg from '/images/memphis-colorful.webp'
 import DisMenu from './DisMenu'
+import Button from '@/components/Button'
 
 const DisInfo: React.FC = () => {
     const [pageNum, setPageNum] = useState('01')
@@ -47,18 +48,8 @@ const DisInfo: React.FC = () => {
                             <div className="mx-auto px-4">
                                 <DisSystem pageNum={pageNum} />
                                 <div className="flex items-center justify-evenly my-10 lg:space-x-5">
-                                    <button
-                                        className="btn sm:btn-wide btn-outline btn-accent"
-                                        onClick={previousPageHandler}
-                                    >
-                                        上一頁
-                                    </button>
-                                    <button
-                                        className="btn sm:btn-wide btn-outline btn-accent"
-                                        onClick={nextPageHandler}
-                                    >
-                                        下一頁
-                                    </button>
+                                    <Button onClick={previousPageHandler}>上一頁</Button>
+                                    <Button onClick={nextPageHandler}>下一頁</Button>
                                 </div>
                             </div>
                         </div>

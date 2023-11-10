@@ -21,12 +21,12 @@ const routes: RouteObject[] = [
                 element: <PersonalInfo />,
             },
             {
-                path: '/survey/fillOut',
-                element: <FillOut />,
-            },
-            {
                 path: '/survey/:items',
                 element: <DisInfo />,
+            },
+            {
+                path: '/survey/fillOut',
+                element: <FillOut />,
             },
         ],
     },

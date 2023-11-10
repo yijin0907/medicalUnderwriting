@@ -1,6 +1,8 @@
 import dbData from '@/disDB'
 import filterDisDBData from '@/filterDisDB'
-import DisSelectedOptions from './DisSelectedOptions'
+import DisCategory from './DisCategory'
+import DisOption from './DisOption'
+import DisEmpty from './DisEmpty'
 
 type DisInfomation = {
     level1: string
@@ -10,13 +12,12 @@ type DisInfomation = {
     dis_code: string
 }
 
-const DisSystem = ({ pageNum }: { pageNum: string }) => {
-    const gender: string = 'female'
-    const age = 20
+const gender: string = 'female'
+const age = 20
 
+const DisSystem = ({ pageNum }: { pageNum: string }) => {
     const dbKey = 'K' + pageNum
     const disSystem = dbData[dbKey as keyof typeof dbData]
-    // const disSystemName = disSystem[0].level1 as string
     const genderFilterData =
         gender === 'male'
             ? disSystem.filter((e) => filterDisDBData.onlyFemale.indexOf(e.dis_code) === -1)
@@ -29,41 +30,35 @@ const DisSystem = ({ pageNum }: { pageNum: string }) => {
         age > 10
             ? above14yFilterData.filter((e) => filterDisDBData.under10y.indexOf(e.dis_code) === -1)
             : above14yFilterData
-
     const disDatas = under10yFilter as Array<DisInfomation>
 
     return (
-        <>
-            <div className="">
-                <form>
-                    <div className="flex flex-wrap items-center justify-center">
-                        {disDatas.length !== 0 ? (
-                            disDatas.map((v, index) => {
-                                return (
-                                    <div
-                                        className={`opacity-[85%] w-full ${
-                                            index % 2 !== 0 ? 'bg-primary' : 'bg-secondary'
-                                        } rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300`}
-                                        key={v.dis_code}
-                                    >
-                                        <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
-                                        <DisSelectedOptions
-                                            disName={v.dis_name}
-                                            disCode={v.dis_code}
-                                            hospOnly={filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false}
-                                        />
-                                    </div>
-                                )
-                            })
-                        ) : (
-                            <div className="w-full opacity-[70%] bg-blue-300 rounded-xl mt-4 flex justify-center shadow-2xl">
-                                <p className="lg:text-xl xl:mx-72 p-6 font-mono font-bold">No System Disease！！！</p>
+        <form>
+            <div className="flex flex-wrap items-center justify-center">
+                {disDatas.length !== 0 ? (
+                    disDatas.map((v, index) => {
+                        return (
+                            <div
+                                className={`opacity-[85%] w-full ${
+                                    index % 2 !== 0 ? 'bg-primary' : 'bg-secondary'
+                                } rounded-xl mt-4 flex justify-between items-center shadow-2xl hover:scale-105 duration-300`}
+                                key={v.dis_code}
+                            >
+                                <p className="lg:text-lg text-sm text-center w-1/2 p-4">{v.dis_name}</p>
+                                <DisCategory>
+                                    {filterDisDBData.onlyHosp.indexOf(v.dis_code) === -1 || false ? (
+                                        <DisOption disCode={v.dis_code} disName={v.dis_name} category="CATCH" />
+                                    ) : null}
+                                    <DisOption disCode={v.dis_code} disName={v.dis_name} category="HOSP" />
+                                </DisCategory>
                             </div>
-                        )}
-                    </div>
-                </form>
+                        )
+                    })
+                ) : (
+                    <DisEmpty />
+                )}
             </div>
-        </>
+        </form>
     )
 }
 

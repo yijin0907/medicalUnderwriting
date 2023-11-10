@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { FormEvent, useContext } from 'react'
 import { PersonalInfoReducerContext } from '@/components/store/personalInfoContext'
+import Button from '@/components/Button'
 
 type InputType = {
     username: string
@@ -11,7 +12,6 @@ type InputType = {
 }
 
 const PersonalInfo: React.FC = () => {
-    // const [state, dispatch] = useReducer(personalInfoReducer, personalInfoInitialState)
     const personalData = useContext(PersonalInfoReducerContext)
     const { register, getValues } = useForm<InputType>({
         shouldUseNativeValidation: true,
@@ -25,14 +25,6 @@ const PersonalInfo: React.FC = () => {
     const navigate = useNavigate()
     function handleClick(e: FormEvent) {
         e.preventDefault()
-        // dispatch({
-        //     type: 'update',
-        //     payload: {
-        //         username: getValues('username'),
-        //         gender: getValues('gender'),
-        //         birth: getValues('birth'),
-        //     },
-        // })
         personalData?.dispatch({
             type: 'update',
             payload: {
@@ -41,7 +33,7 @@ const PersonalInfo: React.FC = () => {
                 birth: getValues('birth'),
             },
         })
-        navigate('/survey/disinfo01')
+        navigate('/survey/disInfo01')
     }
     return (
         <>
@@ -101,9 +93,7 @@ const PersonalInfo: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end w-full sm:w-[55%] mb-10 p-2">
-                                <button className="btn btn-accent btn-block btn-outline" onClick={handleClick}>
-                                    下一頁
-                                </button>
+                                <Button onClick={handleClick}>下一頁</Button>
                             </div>
                         </div>
                     </form>
